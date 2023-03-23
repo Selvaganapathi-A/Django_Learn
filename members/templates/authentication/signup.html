@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+<link rel="stylesheet" href="{% static 'CSS/formcontrol.css' %}" />
+{% endblock stylesheets %}
+<!-- Content Here  -->
+{% block main-content %}
+<h3>Register</h3>
+{% if form.errors %}
+
+<p>There are errors in form.</p>
+
+{% endif %}
+<div class="userform">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+<!-- -->
+{% endblock main-content %}
+<!-- Footer Content -->
+{% block footer %}
+<!--  -->
+{% endblock footer %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+{% endblock stylesheets %}
+<!--  -->
+{% block main-content %}
+<h3>
+    <a href="{{venue.website}}"> {{venue.name}} <span class="material-symbols-outlined fs-6">
+        open_in_new
+        </span></a>
+</h3>
+<address>{{venue.address}}. {{venue.zip_code}}</address>
+<p>
+    <a href="tel:+{{venue.phone}}"> {{venue.phone}} </a>
+</p>
+<p>
+    <a href="mailto:{{venue.email}}"> {{venue.email}} </a>
+</p>
+{% if venue.picture %}
+<img src="{{venue.picture.url}}" alt="" style="width: 320px; height: 180px;object-fit: contain;">
+{% endif %}
+<!--  -->
+{% endblock main-content %}
+<!--  -->
+{% block footer %} {% endblock footer %}

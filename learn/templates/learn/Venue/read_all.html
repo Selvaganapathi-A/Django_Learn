@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+{% endblock stylesheets %}
+<!--  -->
+{% block main-content %}
+<h2>Venues</h2>
+<nav aria-label="...">
+    <ul class="pagination">
+        {% if venues.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">&laquo; First</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{venues.previous_page_number}}">Previous</a></li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">&laquo; First</span></li>
+        <li class="page-item disabled"><span class="page-link">Previous</span></li>
+        {% endif %} {% for i in num_of_pages %} {% if i == current_page %}
+        <li class="page-item active" aria-current="page"><span class="page-link">{{i}}</span></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+        {% endif %} {% endfor %} {% if venues.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{venues.next_page_number}}">Next</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{venues.paginator.num_pages}}">Last &raquo;</a></li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">Next</span>
+        </li>
+        <li class="page-item disabled"><span class="page-link">Last &raquo;</span></li>
+        {% endif %}
+    </ul>
+</nav>
+{% for venue in venues %}
+<h3><a href="{% url 'learn:venue_read' venue.id %}"> {{venue.name}} </a></h3>
+<p>{{venue.address}}</p>
+
+<div style="display: flex; justify-content: flex-start; align-items: center">
+    <div class="col">
+        <a href="{% url 'learn:venue_update' venue.id %}">
+            <button class="btn btn-secondary">Update</button>
+        </a>
+    </div>
+    <div class="col">
+        <a href="{% url 'learn:venue_delete' venue.id %}">
+            <button class="btn btn-danger">Delete</button>
+        </a>
+    </div>
+</div>
+<hr />
+{% endfor %}
+
+<!--
+    {% if venues.has_previous %}
+    <a href="?page=1"> &laquo First</a>
+    <a href="?page={{venues.previous_page_number}}"> Previous</a>
+    {% endif %}
+
+<span>
+    {{venues.number}}
+</span>
+
+{% if venues.has_next %}
+<a href="?page={{venues.next_page_number}}"> Next</a>
+<a href="?page={{venues.paginator.num_pages}}"> &raquo Last</a>
+{% endif %}
+-->
+<!--
+    {{venues}}
+    <br>
+    {{venues.has_previous}}
+    <br>
+    {{venues.has_next}}
+    <br>
+    {{venues.number}}
+    <br>
+    {{venues.paginator.num_pages}}
+    <br>
+    <br>
+-->
+{% endblock main-content %} {% block footer %}
+<style>
+    .footer-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column nowrap;
+        width: 50%;
+        margin: 0 auto;
+    }
+</style>
+<div class="footer-container">
+    <span class="content">
+        <a href="{% url 'learn:export_venues' %}">Export Venues as Text</a>
+    </span>
+    <span class="content">
+        <a href="{% url 'learn:export_venues_csv' %}">Export Venues as CSV</a>
+    </span>
+    <span class="content">
+        <a href="{% url 'learn:export_venues_pdf' %}">Export Venues as PDF</a>
+    </span>
+</div>
+{% endblock footer %}

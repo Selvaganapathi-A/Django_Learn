@@ -1,0 +1,25 @@
+.userform > form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+}
+
+.userform > form .form-control {
+    display: grid;
+    place-items: center;
+    margin: 4px auto;
+}
+
+.fw-300 {
+    width: 400px;
+}
+
+.fh-150 {
+    height: 150px;
+}
+
+
+.form-control.textarea {
+    resize: none;
+}

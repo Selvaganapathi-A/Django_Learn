@@ -1,0 +1,104 @@
+{% load static %}
+<!--  -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'learn:index' %}">
+            <img
+                src="{% static 'favicon.svg' %}"
+                alt="Logo"
+                width="30"
+                height="24"
+                class="d-inline-block align-text-top"
+            />
+        </a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'learn:viewCalender' %}"> Calender </a>
+                </li>
+                <!--  -->
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="{% url 'learn:venue_list' %}"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        Venues
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'learn:venue_list' %}">View Venues</a></li>
+                        <li><a class="dropdown-item" href="{% url 'learn:venue_add' %}">Add Venue</a></li>
+                    </ul>
+                </li>
+                <!--  -->
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        Events
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'learn:event_list' %}">View Events</a></li>
+                        <li><a class="dropdown-item" href="{% url 'learn:event_add' %}">Add Event</a></li>
+                    </ul>
+                </li>
+                <!-- Participants -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'learn:participant_list' %}"> Guests </a>
+                </li>
+                <!-- Login Logout -->
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        User
+                    </a>
+                    {% if user.is_authenticated %}
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'members:logout' %}"> Logout </a></li>
+                    </ul>
+                    {% else %}
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'members:login' %}"> Login </a></li>
+                        <li><a class="dropdown-item" href="{% url 'members:register_user' %}"> Register </a></li>
+                    </ul>
+                    {% endif %}
+                </li>
+                <!-- Search -->
+            </ul>
+
+            <form class="d-flex" role="search" method="post" action="{% url 'learn:search' %}">
+                {% csrf_token %}
+                <input
+                    class="form-control me-2"
+                    type="search"
+                    name="searched"
+                    placeholder="Search"
+                    aria-label="Search"
+                />
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>

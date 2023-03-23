@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+<link rel="stylesheet" href="{% static 'CSS/formcontrol.css' %}" />
+{% endblock stylesheets %}
+<!--  -->
+{% block main-content %}
+
+<h1>Found {{ no_of_results }} Results.</h1>
+<h2>Venues</h2>
+
+{% for venue in venues %}
+<h3><a href="{% url 'learn:venue_read' venue.id %}"> {{venue.name}} </a></h3>
+<p>{{venue.address}}</p>
+<br>
+{% endfor %}
+
+<br>
+
+<h2>Events</h2>
+{% for event in events %}
+<h3><a href="{% url 'learn:event_read' event.id %}">{{event.name}}</a></h3>
+<p>{{event.venue.name}} in {{event.event_date}}</p>
+<br>
+{% endfor %}
+
+{% endblock main-content %}

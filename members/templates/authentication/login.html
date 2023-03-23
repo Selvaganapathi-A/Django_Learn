@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+<link rel="stylesheet" href="{% static 'CSS/formcontrol.css' %}" />
+{% endblock stylesheets %}
+<!-- Content Here  -->
+{% block main-content %}
+<h3>Login</h3>
+<div class="userform">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputUsername" class="form-label fw-300 ">Username</label>
+            <input
+                type="text"
+                class="form-control fw-300 "
+                id="exampleInputUsername"
+                name="username"
+                aria-describedby="username"
+            />
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label fw-300 ">Password</label>
+            <input type="password" class="form-control fw-300 " id="exampleInputPassword1" name="password" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<!-- -->
+{% endblock main-content %}
+<!-- Footer Content -->
+{% block footer %}
+<!--  -->
+{% endblock footer %}

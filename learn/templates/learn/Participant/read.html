@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+{% endblock stylesheets %}
+<!--  -->
+{% block main-content %}
+<h3>{{participant.firstname}} {{participant.lastname}}</h3>
+<p><a href="mailto:{{participant.email}}">{{participant.email}}</a></p>
+<p><a href="tel:+{{participant.phone}}">{{participant.phone}}</a></p>
+<!--  -->
+{% endblock main-content %}
+<!--  -->
+{% block footer %} {% endblock footer %}

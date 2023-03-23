@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+{% endblock stylesheets %}
+<!--  -->
+{% block main-content %}
+<h3>{{event.name}}</h3>
+<p>{{event.description}}</p>
+
+<p>Event Organized By {{event.event_manager.username.title}}</p>
+<p>
+    {{ event.event_date|date:"d-M-Y" }} {{ event.event_date|time:"h:i A" }} at
+    <a href="{% url 'learn:venue_read' event.venue.id %}"> {{event.venue.name.title}} </a>
+</p>
+<hr />
+<ul>
+    {% for guest in event.participants.all %}
+    <li>
+        <a href="{% url 'learn:participant_read' guest.id %}"> {{guest.firstname}} </a>
+    </li>
+    {% endfor %}
+</ul>
+<hr />
+<!--  -->
+{% endblock main-content %}
+<!--  -->
+{% block footer %} {% endblock footer %}

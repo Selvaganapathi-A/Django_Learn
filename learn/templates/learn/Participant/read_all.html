@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+{% endblock stylesheets %}
+<!--  -->
+{% block main-content %}
+<h2> Guests </h2>
+{% for participant in participants %}
+<h3><a href="{% url 'learn:participant_read' participant.id %}"> {{participant.firstname}} {{participant.lastname}} </a></h3>
+{% endfor %}
+<!--  -->
+{% endblock main-content %}
+<!--  -->
+{% block footer %}
+
+{% endblock footer %}

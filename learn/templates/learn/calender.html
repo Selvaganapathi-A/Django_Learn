@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+<br />
+{% load static %}
+<br />
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'CSS/style calender.css' %}" />
+{% endblock stylesheets %}
+<br />
+{% block main-content %}
+<div class="monthCalendar">{{monthCalendar|safe}}</div>
+{% endblock main-content %}

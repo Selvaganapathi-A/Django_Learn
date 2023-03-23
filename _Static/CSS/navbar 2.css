@@ -1,0 +1,48 @@
+.navbar ul, .navbar {
+    list-style-type: none;
+    display: flex;
+    margin: 0 auto;
+    justify-content: flex-end;
+    align-items: center;
+    flex-flow: column nowrap;
+    width: 600px;
+    height: fit-content;
+    font-family: "Harrington";
+    padding: 0;
+}
+.navbar > li {
+    margin: 4px 0;
+}
+
+.navbar li > a,
+.navbar li > a:link,
+.navbar li > a:visited {
+    color: red;
+    font-size: 35px;
+    text-decoration: none;
+    position: relative;
+    outline: transparent;
+    padding: 6px;
+}
+
+.navbar li > a::after {
+    /* Content design */
+    content: "";
+    background-color: hsl(0, 100%, 75%);
+    /* Size */
+    width: 0%;
+    height: 2px;
+    /* Position */
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+    z-index: -1;
+    /* Animation */
+    transition: all 200ms;
+}
+
+.navbar li > a:hover::after,
+.navbar li > a:focus::after {
+    width: 100%;
+}

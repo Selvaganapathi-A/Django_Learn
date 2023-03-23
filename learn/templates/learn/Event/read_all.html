@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+{% endblock stylesheets %}
+<!--  -->
+{% block main-content %}
+<h2>Events</h2>
+{% for event in events %}
+<h3><a href="{% url 'learn:event_read' event.id %}"> {{event.name}} </a></h3>
+<p class="fs-6">{{ event.event_date|date:"d-M-Y" }} {{ event.event_date|time:"h:i A" }}</p>
+<p>{{event.description}}</p>
+<div style="display: flex; justify-content: flex-start; align-items: center">
+    <div class="col">
+        <a href="{% url 'learn:event_update' event.id %}">
+            <button class="btn btn-secondary">Update</button>
+        </a>
+    </div>
+    <div class="col">
+        <a href="{% url 'learn:event_delete' event.id %}">
+            <button class="btn btn-danger">Delete</button>
+        </a>
+    </div>
+</div>
+<hr />
+{% endfor %}
+<!--  -->
+{% endblock main-content %}
+<!--  -->
+{% block footer %} {% endblock footer %}

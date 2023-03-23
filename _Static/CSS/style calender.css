@@ -1,0 +1,39 @@
+/* Design Calendar */
+.monthCalendar {
+    margin: 0 auto;
+    width: 300px;
+    height: 200px;
+}
+
+table.month > tbody > tr > th,
+table.month > tbody > tr > td {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+table.month * {
+    padding: 4px;
+}
+
+table.month > tbody > tr > .month {
+    color: green;
+}
+
+table.month > tbody > tr:not(tr:first-child) > td:first-child,
+table.month > tbody > tr:not(tr:first-child) > td:last-child,
+table.month > tbody > tr:not(tr:first-child) > th:first-child,
+table.month > tbody > tr:not(tr:first-child) > th:last-child {
+    color: red;
+}
+
+.yearCalendar {
+    margin: 0 auto;
+}
+
+.year {
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+}
+
+/* ~ Design Calendar */

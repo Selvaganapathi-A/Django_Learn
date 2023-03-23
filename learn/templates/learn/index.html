@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+<link rel="stylesheet" href="{% static 'CSS/formcontrol.css' %}" />
+{% endblock stylesheets %}
+<!--  -->
+{% block main-content %}
+
+<h1>Codemy.</h1>
+<div class="image">
+    <img src="{% static 'Images/9d360a1b8bc1b1f20e37bf91a1c60b5d.jpg' %}" alt="" srcset="" />
+</div>
+<h3>Lorem ipsum dolor sit amet consectetur.</h3>
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque maiores deserunt eos numquam eius perferendis aut consequuntur dolor illo accusamus?</p>
+
+{% endblock main-content %}
