@@ -8,6 +8,8 @@ __pycache__/
 
 # Distribution / packaging
 *.code-workspace
+*.md
+*.json
 _Uploads/
 _Media/
 .ruff_cache/
