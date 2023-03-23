@@ -11,17 +11,16 @@ from .forms import RegisterUserForm
 
 # Create your views here.
 
-
-def index(inbound_request: HttpRequest) -> HttpResponse:
-    return HttpResponse(
-        render(
-            request=inbound_request,
-            template_name="authentication/index.html",
-            context={
-                "title": "Members",
-            },
-        )
-    )
+# def index(inbound_request: HttpRequest) -> HttpResponse:
+#     return HttpResponse(
+#         render(
+#             request=inbound_request,
+#             template_name="authentication/index.html",
+#             context={
+#                 "title": "Members",
+#             },
+#         )
+#     )
 
 
 def register_user(inbound_request: HttpRequest) -> HttpResponse:
@@ -46,30 +45,6 @@ def register_user(inbound_request: HttpRequest) -> HttpResponse:
             },
         )
     )
-
-# def register_user(inbound_request: HttpRequest) -> HttpResponse:
-#     if inbound_request.method == "POST":
-#         form = UserCreationForm(inbound_request.POST)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data["username"]
-#             password = form.cleaned_data["password1"]
-#             user = authenticate(inbound_request, username=username, password=password)
-#             login(request=inbound_request, user=user)
-#             messages.success(inbound_request, ("User Registered Successfully."))
-#             return HttpResponseRedirect(redirect_to=reverse("learn:index"))
-#     form = UserCreationForm()
-#     return HttpResponse(
-#         render(
-#             request=inbound_request,
-#             template_name="authentication/signup.html",
-#             context={
-#                 "title": "Register User",
-#                 "form": form,
-#             },
-#         )
-#     )
-
 
 def login_user(inbound_request: HttpRequest) -> HttpResponse:
     if inbound_request.method == "POST":

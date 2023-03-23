@@ -151,7 +151,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-MEDIA_ROOT = BASE_DIR / "_Uploads"
+MEDIA_ROOT = BASE_DIR / "_Media"
 MEDIA_URL = "media/" if DEBUG else "http://localhost:4000/"
 
 # Static files (CSS, JavaScript, Images)
