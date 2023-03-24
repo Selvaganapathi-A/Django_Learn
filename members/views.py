@@ -1,10 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
-from django.db.models import Q
-from django.http import HttpRequest, HttpResponse, HttpResponseBadRequest
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse
 
 from .forms import RegisterUserForm
@@ -30,7 +27,9 @@ def register_user(inbound_request: HttpRequest) -> HttpResponse:
             form.save()
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password1"]
-            user = authenticate(inbound_request, username=username, password=password)
+            user = authenticate(
+                inbound_request, username=username, password=password
+            )
             login(request=inbound_request, user=user)
             messages.success(inbound_request, ("User Registered Successfully."))
             return HttpResponseRedirect(redirect_to=reverse("learn:index"))
@@ -46,18 +45,23 @@ def register_user(inbound_request: HttpRequest) -> HttpResponse:
         )
     )
 
+
 def login_user(inbound_request: HttpRequest) -> HttpResponse:
     if inbound_request.method == "POST":
         username = inbound_request.POST.get("username")
         password = inbound_request.POST.get("password")
-        user = authenticate(inbound_request, username=username, password=password)
+        user = authenticate(
+            inbound_request, username=username, password=password
+        )
         if user is not None:
             login(inbound_request, user)
             return HttpResponseRedirect(
                 redirect_to=reverse("learn:index"),
             )
         else:
-            messages.error(request=inbound_request, message=("login not validated.."))
+            messages.error(
+                request=inbound_request, message=("login not validated..")
+            )
             return HttpResponseRedirect(redirect_to=reverse("members:login"))
 
     return HttpResponse(

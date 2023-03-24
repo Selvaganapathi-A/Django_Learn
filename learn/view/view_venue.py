@@ -64,8 +64,9 @@ def venue_list(inbound_request: HttpRequest) -> HttpResponse:
 
     venues = page.get_page(current_page)
 
-
-    current_page, page_list = pager(venues.number, venues.paginator.num_pages, 5)
+    current_page, page_list = pager(
+        venues.number, venues.paginator.num_pages, 5
+    )
     return HttpResponse(
         render(
             request=inbound_request,

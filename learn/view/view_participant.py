@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 
 from learn.model import Participant
 
@@ -20,6 +20,7 @@ def participant_add(inbound_request: HttpRequest) -> HttpResponse:
         )
     )
 
+
 @login_required(login_url=reverse_lazy("members:login"))
 def participant_list(inbound_request: HttpRequest) -> HttpResponse:
     participants: list[Participant] = list(Participant.objects.all())
@@ -33,6 +34,7 @@ def participant_list(inbound_request: HttpRequest) -> HttpResponse:
             },
         )
     )
+
 
 @login_required(login_url=reverse_lazy("members:login"))
 def participant_read(

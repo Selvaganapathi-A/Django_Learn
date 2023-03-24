@@ -2,17 +2,25 @@ from pathlib import WindowsPath
 
 ### ABSOLUTE_URL_OVERRIDES = {}
 ### ADMINS = []
-### ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 ### APPEND_SLASH = True
+ASGI_APPLICATION = "Code.asgi.application"  ###
 ### AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+        "NAME": "django.contrib.auth.password_validation."
+        + "UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"
+        "NAME": "django.contrib.auth.password_validation."
+        + "MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation."
+        + "CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 ### AUTH_USER_MODEL = 'auth.User'
@@ -35,20 +43,18 @@ BASE_DIR = WindowsPath("E:/VS_Code/Django_Codemy/Django_Codemy")  ###
 ### CSRF_USE_SESSIONS = False
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": WindowsPath(
-            "E:/VS_Code/Django_Codemy/Django_Codemy/db.sqlite3"
-        ),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
         "ATOMIC_REQUESTS": False,
         "AUTOCOMMIT": True,
         "CONN_MAX_AGE": 0,
         "CONN_HEALTH_CHECKS": False,
         "OPTIONS": {},
         "TIME_ZONE": None,
-        "USER": "",
-        "PASSWORD": "",
-        "HOST": "",
-        "PORT": "",
+        "USER": "postgres",
+        "PASSWORD": "Windows@11",
+        "HOST": "localhost",
+        "PORT": "5432",
         "TEST": {
             "CHARSET": None,
             "COLLATION": None,
@@ -64,11 +70,11 @@ DATABASES = {
 ### DATA_UPLOAD_MAX_NUMBER_FILES = 100
 ### DATETIME_FORMAT = 'N j, Y, P'
 ### DATETIME_INPUT_FORMATS = ['%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M:%S.%f',
-# '%Y-%m-%d %H:%M', '%m/%d/%Y %H:%M:%S', '%m/%d/%Y %H:%M:%S.%f', '%m/%d/%Y %H:%M',
-# '%m/%d/%y %H:%M:%S', '%m/%d/%y %H:%M:%S.%f', '%m/%d/%y %H:%M']
+#  '%Y-%m-%d %H:%M', '%m/%d/%Y %H:%M:%S', '%m/%d/%Y %H:%M:%S.%f', '%m/%d/%Y %H:%M',
+#  '%m/%d/%y %H:%M:%S', '%m/%d/%y %H:%M:%S.%f', '%m/%d/%y %H:%M']
 ### DATE_FORMAT = 'N j, Y'
 ### DATE_INPUT_FORMATS = ['%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y', '%b %d %Y', '%b %d, %Y',
-# '%d %b %Y', '%d %b, %Y', '%B %d %Y', '%B %d, %Y', '%d %B %Y', '%d %B, %Y']
+#  '%d %b %Y', '%d %b, %Y', '%B %d %Y', '%B %d, %Y', '%d %B %Y', '%d %B, %Y']
 DEBUG = True
 ### DEBUG_PROPAGATE_EXCEPTIONS = False
 ### DECIMAL_SEPARATOR = '.'
@@ -95,7 +101,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 ### EMAIL_USE_TLS = False
 ### FILE_UPLOAD_DIRECTORY_PERMISSIONS = None
 ### FILE_UPLOAD_HANDLERS = ['django.core.files.uploadhandler.MemoryFileUploadHandler',
-# 'django.core.files.uploadhandler.TemporaryFileUploadHandler']
+#  'django.core.files.uploadhandler.TemporaryFileUploadHandler']
 ### FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440
 ### FILE_UPLOAD_PERMISSIONS = 420
 ### FILE_UPLOAD_TEMP_DIR = None
@@ -113,37 +119,38 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "learn.apps.LearnConfig",
+    "members.apps.MembersConfig",
 ]
 ### INTERNAL_IPS = []
 ### LANGUAGES = [('af', 'Afrikaans'), ('ar', 'Arabic'), ('ar-dz', 'Algerian Arabic'),
-# ('ast', 'Asturian'), ('az', 'Azerbaijani'), ('bg', 'Bulgarian'),
-# ('be', 'Belarusian'), ('bn', 'Bengali'), ('br', 'Breton'), ('bs', 'Bosnian'),
-# ('ca', 'Catalan'), ('ckb', 'Central Kurdish (Sorani)'), ('cs', 'Czech'),
-# ('cy', 'Welsh'), ('da', 'Danish'), ('de', 'German'), ('dsb', 'Lower Sorbian'),
-# ('el', 'Greek'), ('en', 'English'), ('en-au', 'Australian English'),
-# ('en-gb', 'British English'), ('eo', 'Esperanto'), ('es', 'Spanish'),
-# ('es-ar', 'Argentinian Spanish'), ('es-co', 'Colombian Spanish'),
-# ('es-mx', 'Mexican Spanish'), ('es-ni', 'Nicaraguan Spanish'),
-# ('es-ve', 'Venezuelan Spanish'), ('et', 'Estonian'), ('eu', 'Basque'),
-# ('fa', 'Persian'), ('fi', 'Finnish'), ('fr', 'French'), ('fy', 'Frisian'),
-# ('ga', 'Irish'), ('gd', 'Scottish Gaelic'), ('gl', 'Galician'), ('he', 'Hebrew'),
-# ('hi', 'Hindi'), ('hr', 'Croatian'), ('hsb', 'Upper Sorbian'), ('hu', 'Hungarian'),
-# ('hy', 'Armenian'), ('ia', 'Interlingua'), ('id', 'Indonesian'), ('ig', 'Igbo'),
-# ('io', 'Ido'), ('is', 'Icelandic'), ('it', 'Italian'), ('ja', 'Japanese'),
-# ('ka', 'Georgian'), ('kab', 'Kabyle'), ('kk', 'Kazakh'), ('km', 'Khmer'),
-# ('kn', 'Kannada'), ('ko', 'Korean'), ('ky', 'Kyrgyz'), ('lb', 'Luxembourgish'),
-# ('lt', 'Lithuanian'), ('lv', 'Latvian'), ('mk', 'Macedonian'), ('ml', 'Malayalam'),
-# ('mn', 'Mongolian'), ('mr', 'Marathi'), ('ms', 'Malay'), ('my', 'Burmese'),
-# ('nb', 'Norwegian Bokmσl'), ('ne', 'Nepali'), ('nl', 'Dutch'),
-# ('nn', 'Norwegian Nynorsk'), ('os', 'Ossetic'), ('pa', 'Punjabi'), ('pl', 'Polish'),
-# ('pt', 'Portuguese'), ('pt-br', 'Brazilian Portuguese'), ('ro', 'Romanian'),
-# ('ru', 'Russian'), ('sk', 'Slovak'), ('sl', 'Slovenian'), ('sq', 'Albanian'),
-# ('sr', 'Serbian'), ('sr-latn', 'Serbian Latin'), ('sv', 'Swedish'),
-# ('sw', 'Swahili'), ('ta', 'Tamil'), ('te', 'Telugu'), ('tg', 'Tajik'),
-# ('th', 'Thai'), ('tk', 'Turkmen'), ('tr', 'Turkish'), ('tt', 'Tatar'),
-# ('udm', 'Udmurt'), ('uk', 'Ukrainian'), ('ur', 'Urdu'), ('uz', 'Uzbek'),
-# ('vi', 'Vietnamese'), ('zh-hans', 'Simplified Chinese'),
-# ('zh-hant', 'Traditional Chinese')]
+#  ('ast', 'Asturian'), ('az', 'Azerbaijani'), ('bg', 'Bulgarian'),
+#  ('be', 'Belarusian'), ('bn', 'Bengali'), ('br', 'Breton'), ('bs', 'Bosnian'),
+#  ('ca', 'Catalan'), ('ckb', 'Central Kurdish (Sorani)'), ('cs', 'Czech'),
+#  ('cy', 'Welsh'), ('da', 'Danish'), ('de', 'German'), ('dsb', 'Lower Sorbian'),
+#  ('el', 'Greek'), ('en', 'English'), ('en-au', 'Australian English'),
+#  ('en-gb', 'British English'), ('eo', 'Esperanto'), ('es', 'Spanish'),
+#  ('es-ar', 'Argentinian Spanish'), ('es-co', 'Colombian Spanish'),
+#  ('es-mx', 'Mexican Spanish'), ('es-ni', 'Nicaraguan Spanish'),
+#  ('es-ve', 'Venezuelan Spanish'), ('et', 'Estonian'), ('eu', 'Basque'),
+#  ('fa', 'Persian'), ('fi', 'Finnish'), ('fr', 'French'), ('fy', 'Frisian'),
+#  ('ga', 'Irish'), ('gd', 'Scottish Gaelic'), ('gl', 'Galician'), ('he', 'Hebrew'),
+#  ('hi', 'Hindi'), ('hr', 'Croatian'), ('hsb', 'Upper Sorbian'), ('hu', 'Hungarian'),
+#  ('hy', 'Armenian'), ('ia', 'Interlingua'), ('id', 'Indonesian'), ('ig', 'Igbo'),
+#  ('io', 'Ido'), ('is', 'Icelandic'), ('it', 'Italian'), ('ja', 'Japanese'),
+#  ('ka', 'Georgian'), ('kab', 'Kabyle'), ('kk', 'Kazakh'), ('km', 'Khmer'),
+#  ('kn', 'Kannada'), ('ko', 'Korean'), ('ky', 'Kyrgyz'), ('lb', 'Luxembourgish'),
+#  ('lt', 'Lithuanian'), ('lv', 'Latvian'), ('mk', 'Macedonian'), ('ml', 'Malayalam'),
+#  ('mn', 'Mongolian'), ('mr', 'Marathi'), ('ms', 'Malay'), ('my', 'Burmese'),
+#  ('nb', 'Norwegian Bokmσl'), ('ne', 'Nepali'), ('nl', 'Dutch'),
+#  ('nn', 'Norwegian Nynorsk'), ('os', 'Ossetic'), ('pa', 'Punjabi'), ('pl', 'Polish'),
+#  ('pt', 'Portuguese'), ('pt-br', 'Brazilian Portuguese'), ('ro', 'Romanian'),
+#  ('ru', 'Russian'), ('sk', 'Slovak'), ('sl', 'Slovenian'), ('sq', 'Albanian'),
+#  ('sr', 'Serbian'), ('sr-latn', 'Serbian Latin'), ('sv', 'Swedish'),
+#  ('sw', 'Swahili'), ('ta', 'Tamil'), ('te', 'Telugu'), ('tg', 'Tajik'),
+#  ('th', 'Thai'), ('tk', 'Turkmen'), ('tr', 'Turkish'), ('tt', 'Tatar'),
+#  ('udm', 'Udmurt'), ('uk', 'Ukrainian'), ('ur', 'Urdu'), ('uz', 'Uzbek'),
+#  ('vi', 'Vietnamese'), ('zh-hans', 'Simplified Chinese'),
+#  ('zh-hant', 'Traditional Chinese')]
 ### LANGUAGES_BIDI = ['he', 'ar', 'ar-dz', 'ckb', 'fa', 'ur']
 LANGUAGE_CODE = "en-in"
 ### LANGUAGE_COOKIE_AGE = None
@@ -160,8 +167,8 @@ LANGUAGE_CODE = "en-in"
 ### LOGIN_URL = '/accounts/login/'
 ### LOGOUT_REDIRECT_URL = None
 ### MANAGERS = []
-### MEDIA_ROOT = ''
-### MEDIA_URL = ''
+MEDIA_ROOT = WindowsPath("E:/VS_Code/Django_Codemy/Django_Codemy/_Media")
+MEDIA_URL = "media/"
 ### MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -179,14 +186,16 @@ MIDDLEWARE = [
 # 'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 # 'django.contrib.auth.hashers.Argon2PasswordHasher',
 # 'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-# 'django.contrib.auth.hashers.ScryptPasswordHasher']
+#  'django.contrib.auth.hashers.ScryptPasswordHasher']
 ### PASSWORD_RESET_TIMEOUT = 259200
 ### PREPEND_WWW = False
 ROOT_URLCONF = "Code.urls"  ###
-SECRET_KEY = """aHbRz5mJNTn6Rmm7IXSLbOk75CUWSKwLXavE2xX4aiPPpWwwpaVEhO4jTxuNcDLwAkUo
-FZO4A7Z0KBepxfP7D6QHeicsh6nash4FzQgreQgYtt7o2fpCM1SL7eSohPy8pikZbnqDLu4q4f07BWbQXdJy
-pRn71A0az0WC1KNVTYt1Lt063cvRVpxiA1rfSKC7clOzkJr6ONMJ0Hm84EZwyKeDU9zq8qRFYwDjQbpWcBfw
-TaTyRkoLvbM9HyTEHaVp"""
+SECRET_KEY = (
+    "aHbRz5mJNTn6Rmm7IXSLbOk75CUWSKwLXavE2xX4aiPPpWwwpaVEhO4jTxuNcDLwAkUoFZO4A"
+    + "7Z0KBepxfP7D6QHeicsh6nash4FzQgreQgYtt7o2fpCM1SL7eSohPy8pikZbnqDLu4q4f07"
+    + "BWbQXdJypRn71A0az0WC1KNVTYt1Lt063cvRVpxiA1rfSKC7clOzkJr6ONMJ0Hm84EZwyKe"
+    + "DU9zq8qRFYwDjQbpWcBfwTaTyRkoLvbM9HyTEHaVp"
+)
 ### SECRET_KEY_FALLBACKS = []
 ### SECURE_CONTENT_TYPE_NOSNIFF = True
 ### SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
@@ -217,14 +226,16 @@ SETTINGS_MODULE = "Code.settings"  ###
 ### SHORT_DATE_FORMAT = 'm/d/Y'
 ### SIGNING_BACKEND = 'django.core.signing.TimestampSigner'
 ### SILENCED_SYSTEM_CHECKS = []
-### STATICFILES_DIRS = []
+STATICFILES_DIRS = [
+    WindowsPath("E:/VS_Code/Django_Codemy/Django_Codemy/_Static")
+]
 ### STATICFILES_FINDERS = ['django.contrib.staticfiles.finders.FileSystemFinder',
-# 'django.contrib.staticfiles.finders.AppDirectoriesFinder']
+#  'django.contrib.staticfiles.finders.AppDirectoriesFinder']
 ### STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-### STATIC_ROOT = None
+STATIC_ROOT = WindowsPath("E:/VS_Code/Django_Codemy/Django_Codemy/Static")
 STATIC_URL = "static/"
 ### STORAGES = {'default': {'BACKEND': 'django.core.files.storage.FileSystemStorage'},
-# 'staticfiles': {'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage'}}
+#  'staticfiles': {'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage'}}
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
