@@ -1,14 +1,16 @@
 from uuid import UUID
 
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from learn.form import EventForm
 from learn.model import Event
 
 
+@login_required(login_url=reverse_lazy("members:login"))
 def event_add(inbound_request: HttpRequest) -> HttpResponse:
     if inbound_request.method == "POST":
         form = EventForm(data=inbound_request.POST, files=inbound_request.FILES)
@@ -34,6 +36,7 @@ def event_add(inbound_request: HttpRequest) -> HttpResponse:
     )
 
 
+@login_required(login_url=reverse_lazy("members:login"))
 def event_list(inbound_request: HttpRequest) -> HttpResponse:
     events: tuple[Event] = tuple(
         Event.objects.all()
@@ -55,6 +58,7 @@ def event_list(inbound_request: HttpRequest) -> HttpResponse:
     )
 
 
+@login_required(login_url=reverse_lazy("members:login"))
 def event_read(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
     event: Event = Event.objects.get(
         Q(id=event_id),
@@ -68,6 +72,7 @@ def event_read(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
     )
 
 
+@login_required(login_url=reverse_lazy("members:login"))
 def event_update(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
     event = Event.objects.get(
         Q(
@@ -103,6 +108,7 @@ def event_update(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
     )
 
 
+@login_required(login_url=reverse_lazy("members:login"))
 def event_delete(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
     Event.objects.get(id=event_id).delete()
     return HttpResponseRedirect(

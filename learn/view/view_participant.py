@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from learn.model import Participant
 
 
+@login_required(login_url=reverse_lazy("members:login"))
 def participant_add(inbound_request: HttpRequest) -> HttpResponse:
     return HttpResponse(
         render(
@@ -57,6 +58,7 @@ def participant_read(
     )
 
 
+@login_required(login_url=reverse_lazy("members:login"))
 def participant_update(
     inbound_request: HttpRequest, participant_id: UUID
 ) -> HttpResponse:
@@ -71,6 +73,7 @@ def participant_update(
     )
 
 
+@login_required(login_url=reverse_lazy("members:login"))
 def participant_delete(
     inbound_request: HttpRequest, participant_id: UUID
 ) -> HttpResponse:

@@ -1,15 +1,17 @@
 from uuid import UUID
 
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from learn.form import VenueForm
 from learn.model import Venue
 from learn.view.util import pager
 
 
+@login_required(login_url=reverse_lazy("members:login"))
 def venue_add(
     inbound_request: HttpRequest,
 ) -> HttpResponseRedirect | HttpResponse:
@@ -98,6 +100,7 @@ def venue_read(
     )
 
 
+@login_required(login_url=reverse_lazy("members:login"))
 def venue_update(
     inbound_request: HttpRequest,
     venue_id: UUID,
@@ -131,6 +134,7 @@ def venue_update(
     )
 
 
+@login_required(login_url=reverse_lazy("members:login"))
 def venue_delete(
     inbound_request: HttpRequest,
     venue_id: UUID,

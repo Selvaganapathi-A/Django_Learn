@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpRequest, HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
@@ -19,6 +20,7 @@ def index(inbound_request: HttpRequest) -> HttpResponse:
     )
 
 
+@login_required(login_url="members:login")
 def search(inbound_request: HttpRequest) -> HttpResponse:
     print("Hello Google....")
     if (inbound_request.method == "POST") and (
