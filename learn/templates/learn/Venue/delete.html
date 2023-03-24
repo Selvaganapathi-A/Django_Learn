@@ -1,17 +1,12 @@
-{% extends "base.html" %} {% load static %} {% block stylesheets %}
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheets %}
 <link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
 <link rel="stylesheet" href="{% static 'CSS/formcontrol.css' %}" />
-{% endblock stylesheets %} {% block main-content %}
-<h2>Add Venue</h2>
-<br />
-<br />
-{% if submitted %}
-<p>Form Submitted Successfully...</p>
-{% else %}
-<div class="userform">
-    <form action="{% url 'learn:add_venue' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %} {{form.as_div}}
-        <input class="btn btn-primary" type="submit" value="Submit" />
-    </form>
-</div>
-{% endif %} {% endblock main-content %}
+{% endblock stylesheets %}
+<!--  -->
+{% block main-content %}
+<!--  -->
+{% endblock main-content %}

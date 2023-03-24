@@ -11,7 +11,7 @@ from learn.model import Venue
 from learn.view.util import pager
 
 
-@login_required(login_url=reverse_lazy("members:login"))
+
 def venue_add(
     inbound_request: HttpRequest,
 ) -> HttpResponseRedirect | HttpResponse:
@@ -42,6 +42,7 @@ def venue_add(
                 "title": "Add Venue",
                 "is_submitted": is_submitted,
                 "form": form,
+                "user":inbound_request.user,
             },
         )
     )
@@ -78,6 +79,7 @@ def venue_list(inbound_request: HttpRequest) -> HttpResponse:
                 "venues": venues,
                 "num_of_pages": page_list,
                 "current_page": current_page,
+                "user":inbound_request.user,
             },
         )
     )
@@ -95,12 +97,13 @@ def venue_read(
             context={
                 "title": "Venue " + venue.name,
                 "venue": venue,
+                "user":inbound_request.user,
             },
         )
     )
 
 
-@login_required(login_url=reverse_lazy("members:login"))
+
 def venue_update(
     inbound_request: HttpRequest,
     venue_id: UUID,
@@ -129,12 +132,13 @@ def venue_update(
             context={
                 "title": "Update Venue",
                 "form": form,
+                "user":inbound_request.user,
             },
         )
     )
 
 
-@login_required(login_url=reverse_lazy("members:login"))
+
 def venue_delete(
     inbound_request: HttpRequest,
     venue_id: UUID,

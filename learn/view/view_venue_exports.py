@@ -11,7 +11,7 @@ from reportlab.pdfgen import canvas
 from learn.model import Venue
 
 
-@login_required(login_url=reverse_lazy("members:login"))
+
 def export_venue_txt(
     inbound_request: HttpRequest,
 ) -> HttpResponse:
@@ -37,7 +37,7 @@ def export_venue_txt(
     return response
 
 
-@login_required(login_url=reverse_lazy("members:login"))
+
 def export_venue_csv(
     inbound_request: HttpRequest,
 ) -> HttpResponse:
@@ -74,7 +74,7 @@ def export_venue_csv(
     return response
 
 
-@login_required(login_url=reverse_lazy("members:login"))
+
 def export_venue_pdf(
     inbound_request: HttpRequest,
 ) -> FileResponse:

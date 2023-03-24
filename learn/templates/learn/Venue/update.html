@@ -9,14 +9,20 @@
 <!--  -->
 {% block main-content %}
 <!--  -->
+{% if user.is_authenticated %}
 <h2>Update Venue</h2>
 <br />
 <div class="userform">
     <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %} {{form.as_div}}
+        {% csrf_token %}
+        <!--  -->
+        {{form.as_div}}
         <input class="btn btn-primary" type="submit" value="Update" />
     </form>
 </div>
+{% else %}
+<p>You need to <a href="{% url 'members:login' %}"> Login </a> to Access this page.</p>
+{% endif %}
 <!--  -->
 {% endblock main-content %}
 <!--  -->

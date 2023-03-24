@@ -31,12 +31,13 @@ def event_add(inbound_request: HttpRequest) -> HttpResponse:
             context={
                 "title": "Add Event",
                 "form": EventForm(),
+                "user":inbound_request.user,
             },
         )
     )
 
 
-@login_required(login_url=reverse_lazy("members:login"))
+
 def event_list(inbound_request: HttpRequest) -> HttpResponse:
     events: tuple[Event] = tuple(
         Event.objects.all()
@@ -53,12 +54,13 @@ def event_list(inbound_request: HttpRequest) -> HttpResponse:
             context={
                 "title": "Events List",
                 "events": events,
+                "user":inbound_request.user,
             },
         )
     )
 
 
-@login_required(login_url=reverse_lazy("members:login"))
+
 def event_read(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
     event: Event = Event.objects.get(
         Q(id=event_id),
@@ -67,12 +69,13 @@ def event_read(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
         render(
             request=inbound_request,
             template_name="learn/Event/read.html",
-            context={"title": event.name, "event": event},
+            context={"title": event.name, "event": event,
+                "user":inbound_request.user,},
         )
     )
 
 
-@login_required(login_url=reverse_lazy("members:login"))
+
 def event_update(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
     event = Event.objects.get(
         Q(
@@ -103,12 +106,13 @@ def event_update(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
             context={
                 "title": "Update Event",
                 "form": form,
+                "user":inbound_request.user,
             },
         )
     )
 
 
-@login_required(login_url=reverse_lazy("members:login"))
+
 def event_delete(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
     Event.objects.get(id=event_id).delete()
     return HttpResponseRedirect(
