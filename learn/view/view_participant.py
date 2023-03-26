@@ -9,7 +9,6 @@ from django.urls import reverse_lazy
 from learn.model import Participant
 
 
-
 def participant_add(inbound_request: HttpRequest) -> HttpResponse:
     return HttpResponse(
         render(
@@ -17,11 +16,10 @@ def participant_add(inbound_request: HttpRequest) -> HttpResponse:
             template_name="",
             context={
                 "title": "Event Management",
-                "user":inbound_request.user,
+                "user": inbound_request.user,
             },
         )
     )
-
 
 
 def participant_list(inbound_request: HttpRequest) -> HttpResponse:
@@ -33,11 +31,10 @@ def participant_list(inbound_request: HttpRequest) -> HttpResponse:
             context={
                 "title": "Event Management",
                 "participants": participants,
-                "user":inbound_request.user,
+                "user": inbound_request.user,
             },
         )
     )
-
 
 
 def participant_read(
@@ -55,11 +52,10 @@ def participant_read(
             context={
                 "title": "Event Management",
                 "participant": participant,
-                "user":inbound_request.user,
+                "user": inbound_request.user,
             },
         )
     )
-
 
 
 def participant_update(
@@ -71,11 +67,10 @@ def participant_update(
             template_name="",
             context={
                 "title": "Event Management",
-                "user":inbound_request.user,
+                "user": inbound_request.user,
             },
         )
     )
-
 
 
 def participant_delete(
@@ -87,7 +82,7 @@ def participant_delete(
             template_name="",
             context={
                 "title": "Event Management",
-                "user":inbound_request.user,
+                "user": inbound_request.user,
             },
         )
     )

@@ -40,10 +40,13 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'learn:venue_list' %}">View Venues</a></li>
+                        {% if user.is_authenticated %}
                         <li><a class="dropdown-item" href="{% url 'learn:venue_add' %}">Add Venue</a></li>
+                        {% endif %}
                     </ul>
                 </li>
                 <!--  -->
+                {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a
                         class="nav-link dropdown-toggle"
@@ -59,6 +62,7 @@
                         <li><a class="dropdown-item" href="{% url 'learn:event_add' %}">Add Event</a></li>
                     </ul>
                 </li>
+                {% endif %}
                 <!-- Participants -->
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'learn:participant_list' %}"> Guests </a>
@@ -102,4 +106,3 @@
         </div>
     </div>
 </nav>
-

@@ -13,7 +13,7 @@ class RegisterUserForm(UserCreationForm):
             },
         )
     )
-    firstname = forms.CharField(
+    first_name = forms.CharField(
         max_length=50,
         widget=forms.widgets.TextInput(
             attrs={
@@ -21,7 +21,7 @@ class RegisterUserForm(UserCreationForm):
             },
         ),
     )
-    lastname = forms.CharField(
+    last_name = forms.CharField(
         max_length=50,
         widget=forms.widgets.TextInput(
             attrs={
@@ -44,8 +44,8 @@ class RegisterUserForm(UserCreationForm):
         model = User
         fields = (
             "username",
-            "firstname",
-            "lastname",
+            "first_name",
+            "last_name",
             "address",
             "email",
             "password1",

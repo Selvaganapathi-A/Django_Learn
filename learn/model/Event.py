@@ -33,3 +33,12 @@ class Event(models.Model):
                 "event_id": self.id,  # type:ignore
             },
         )
+
+
+def main():
+    User.first_name
+    User.last_name
+
+
+if __name__ == "__main__":
+    main()

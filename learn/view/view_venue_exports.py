@@ -11,7 +11,6 @@ from reportlab.pdfgen import canvas
 from learn.model import Venue
 
 
-
 def export_venue_txt(
     inbound_request: HttpRequest,
 ) -> HttpResponse:
@@ -35,7 +34,6 @@ def export_venue_txt(
     response.writelines(lines=lines)
 
     return response
-
 
 
 def export_venue_csv(
@@ -72,7 +70,6 @@ def export_venue_csv(
         )
 
     return response
-
 
 
 def export_venue_pdf(

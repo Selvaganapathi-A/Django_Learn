@@ -9,6 +9,8 @@
 <!--  -->
 {% block main-content %}
 <!--  -->
+{% if user.is_authenticated %}
+{% if user == event.event_manager %}
 <h2>Update Event</h2>
 <br />
 <div class="userform">
@@ -17,6 +19,16 @@
         <input class="btn btn-primary" type="submit" value="Update" />
     </form>
 </div>
+{% else%}
+<p>Access Denied</p>
+<p>
+    Only
+    <strong> Event Manager </strong>
+    can update Event.
+</p>
+{% endif %} {% else %}
+<p>You need to <a href="{% url 'members:login' %}"> Login </a> to Access this page.</p>
+{% endif %}
 <!--  -->
 {% endblock main-content %}
 <!--  -->
