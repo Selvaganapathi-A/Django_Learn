@@ -89,36 +89,36 @@ WSGI_APPLICATION = "Code.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "ATOMIC_REQUESTS": False,
-        "AUTOCOMMIT": True,
-        "CONN_MAX_AGE": 0,
-        "CONN_HEALTH_CHECKS": False,
-        "OPTIONS": {},
-        "TIME_ZONE": None,
-        "USER": "postgres",
-        "PASSWORD": "Windows@11",
-        "HOST": "localhost",
-        "PORT": "5432",
-        "TEST": {
-            "CHARSET": None,
-            "COLLATION": None,
-            "MIGRATE": True,
-            "MIRROR": None,
-            "NAME": None,
-        },
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "postgres",
+#         "ATOMIC_REQUESTS": False,
+#         "AUTOCOMMIT": True,
+#         "CONN_MAX_AGE": 0,
+#         "CONN_HEALTH_CHECKS": False,
+#         "OPTIONS": {},
+#         "TIME_ZONE": None,
+#         "USER": "postgres",
+#         "PASSWORD": "Windows@11",
+#         "HOST": "localhost",
+#         "PORT": "5432",
+#         "TEST": {
+#             "CHARSET": None,
+#             "COLLATION": None,
+#             "MIGRATE": True,
+#             "MIRROR": None,
+#             "NAME": None,
+#         },
+#     }
+# }
 
 
 # Password validation

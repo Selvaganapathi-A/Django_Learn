@@ -21,8 +21,9 @@ def venue_add(
             files=inbound_request.FILES,
         )
         if form.is_valid():
-            form.save()
-            print(form.Meta.model.id)
+            venue = form.save(commit=False)
+            venue.owner = inbound_request.user.id #type:ignore
+            venue.save()
             return HttpResponseRedirect(
                 redirect_to=reverse("learn:venue_add") + "?submitted=True",
             )
@@ -60,7 +61,7 @@ def venue_list(inbound_request: HttpRequest) -> HttpResponse:
             "name",
             "address",
         ),
-        2,
+        4,
     )
     current_page = inbound_request.GET.get("page")
 

@@ -1,5 +1,6 @@
 from uuid import uuid4
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
@@ -13,7 +14,9 @@ class Venue(models.Model):
     zip_code = models.CharField("Zip Code", max_length=50)
     website = models.URLField("Website Address", unique=True)
     phone = models.CharField("Contact Number", max_length=20)
-    email = models.EmailField("Contact EmailID")
+    email = models.EmailField("Contact Email Address")
+    owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
+    # owner = models.IntegerField(blank=True, null=True, default=1)
     picture = models.ImageField(
         "Venue Picture", upload_to="venue", default=None, null=True, blank=True
     )

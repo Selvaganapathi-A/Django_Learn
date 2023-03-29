@@ -35,6 +35,7 @@
 <h3><a href="{% url 'learn:venue_read' venue.id %}"> {{venue.name}} </a></h3>
 <p>{{venue.address}}</p>
 {% if user.is_authenticated %}
+{% if user.id == venue.owner.id %}
 <div style="display: flex; justify-content: flex-start; align-items: center">
     <div class="col">
         <a href="{% url 'learn:venue_update' venue.id %}">
@@ -47,7 +48,7 @@
         </a>
     </div>
 </div>
-{% endif %}
+{% endif %} {% endif %}
 <hr />
 {% endfor %}
 
