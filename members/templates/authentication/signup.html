@@ -15,7 +15,7 @@
     <p>There are errors in form.</p>
     {% endif %}
     <div class="userform">
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" action="{% url 'members:register_user' %}">
             {% csrf_token %} {{form.as_div}}
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Submit</button>

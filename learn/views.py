@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.http import HttpRequest, HttpResponse, HttpResponseBadRequest
+from django.http import HttpRequest, HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.shortcuts import render
 
 from learn.model import Event, Venue
+from datetime import datetime
 
 # Create your views here.
 
@@ -51,4 +52,10 @@ def search(inbound_request: HttpRequest) -> HttpResponse:
         )
     return HttpResponseBadRequest(
         content="Bad Request",
+    )
+
+
+def APIresponse(inbound_request:HttpRequest):
+    return JsonResponse(
+        {"datetime":datetime.now()}
     )

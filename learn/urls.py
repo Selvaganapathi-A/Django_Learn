@@ -1,16 +1,16 @@
 from django.urls import path
 
 from learn.view.view_calendar import calenderMonthView
-from learn.view.view_event import event_add, event_delete, event_list
-from learn.view.view_event import event_read, event_update
+from learn.view.view_event import event_add, event_delete, event_list, event_read
+from learn.view.view_event import event_update
 from learn.view.view_participant import participant_add, participant_delete
 from learn.view.view_participant import participant_list, participant_read
 from learn.view.view_participant import participant_update
-from learn.view.view_venue import venue_add, venue_delete, venue_list
-from learn.view.view_venue import venue_read, venue_update
+from learn.view.view_venue import venue_add, venue_delete, venue_list, venue_read
+from learn.view.view_venue import venue_update
 from learn.view.view_venue_exports import export_venue_csv, export_venue_pdf
 from learn.view.view_venue_exports import export_venue_txt
-from learn.views import index, search
+from learn.views import APIresponse, index, search
 
 app_name = "learn"
 
@@ -130,5 +130,10 @@ urlpatterns = [
         "calender/<int:year>/<int:month>",
         calenderMonthView,
         name="viewCalender",
+    ),
+    path(
+        "api",
+        APIresponse,
+        name="api",
     ),
 ]

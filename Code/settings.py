@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 from pathlib import Path
 
 APPEND_SLASH = True
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent  # type: ignore
 
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     # Created Apps
     "learn.apps.LearnConfig",
     "members.apps.MembersConfig",
+    "vulture.apps.VultureConfig"
 ]
 
 MIDDLEWARE = [
@@ -151,6 +153,7 @@ USE_I18N = True
 USE_TZ = True
 
 
+# Media files (User Uploaded files Like, Images, Videos, Documents)
 MEDIA_ROOT = BASE_DIR / "_Media"
 MEDIA_URL = "media/" if DEBUG else "http://localhost:4000/"
 

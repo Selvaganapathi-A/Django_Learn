@@ -10,7 +10,7 @@
 {% block main-content %}
 <h3>Login</h3>
 <div class="userform">
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" action=" {% url 'members:login' %}">
         {% csrf_token %}
         <div class="mb-3">
             <label for="exampleInputUsername" class="form-label fw-300 ">Username</label>

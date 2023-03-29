@@ -33,6 +33,8 @@ def register_user(inbound_request: HttpRequest) -> HttpResponse:
             login(request=inbound_request, user=user)
             messages.success(inbound_request, ("User Registered Successfully."))
             return HttpResponseRedirect(redirect_to=reverse("learn:index"))
+        else:
+            print(form.errors)
     form = RegisterUserForm()
     return HttpResponse(
         render(

@@ -130,6 +130,7 @@ def venue_update(
             context={
                 "title": "Update Venue",
                 "form": form,
+                "venue":venue_instance,
                 "user": inbound_request.user,
             },
         )
