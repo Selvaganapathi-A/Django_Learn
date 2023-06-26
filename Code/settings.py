@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 from pathlib import Path
 
 APPEND_SLASH = True
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent  # type: ignore
 
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     # Created Apps
     "learn.apps.LearnConfig",
     "members.apps.MembersConfig",
+    "vulture.apps.VultureConfig"
 ]
 
 MIDDLEWARE = [
@@ -87,36 +89,36 @@ WSGI_APPLICATION = "Code.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "ATOMIC_REQUESTS": False,
-        "AUTOCOMMIT": True,
-        "CONN_MAX_AGE": 0,
-        "CONN_HEALTH_CHECKS": False,
-        "OPTIONS": {},
-        "TIME_ZONE": None,
-        "USER": "postgres",
-        "PASSWORD": "Windows@11",
-        "HOST": "localhost",
-        "PORT": "5432",
-        "TEST": {
-            "CHARSET": None,
-            "COLLATION": None,
-            "MIGRATE": True,
-            "MIRROR": None,
-            "NAME": None,
-        },
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "postgres",
+#         "ATOMIC_REQUESTS": False,
+#         "AUTOCOMMIT": True,
+#         "CONN_MAX_AGE": 0,
+#         "CONN_HEALTH_CHECKS": False,
+#         "OPTIONS": {},
+#         "TIME_ZONE": None,
+#         "USER": "postgres",
+#         "PASSWORD": "Windows@11",
+#         "HOST": "localhost",
+#         "PORT": "5432",
+#         "TEST": {
+#             "CHARSET": None,
+#             "COLLATION": None,
+#             "MIGRATE": True,
+#             "MIRROR": None,
+#             "NAME": None,
+#         },
+#     }
+# }
 
 
 # Password validation
@@ -151,7 +153,8 @@ USE_I18N = True
 USE_TZ = True
 
 
-MEDIA_ROOT = BASE_DIR / "_Uploads"
+# Media files (User Uploaded files Like, Images, Videos, Documents)
+MEDIA_ROOT = BASE_DIR / "_Media"
 MEDIA_URL = "media/" if DEBUG else "http://localhost:4000/"
 
 # Static files (CSS, JavaScript, Images)

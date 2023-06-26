@@ -7,6 +7,7 @@
 {% endblock stylesheets %}
 <!--  -->
 {% block main-content %}
+{% if user.is_authenticated %}
 <h3>{{event.name}}</h3>
 <p>{{event.description}}</p>
 
@@ -23,6 +24,10 @@
     </li>
     {% endfor %}
 </ul>
+
+{% else %}
+<p>You need to <a href="{% url 'members:login' %}"> Login </a> to Access this page.</p>
+{% endif %}
 <hr />
 <!--  -->
 {% endblock main-content %}

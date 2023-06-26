@@ -12,14 +12,14 @@
 }
 
 .fw-300 {
-    width: 400px;
+    width: 500px;
 }
 
 .fh-150 {
-    height: 150px;
+    height: 200px;
 }
 
 
-.form-control.textarea {
+textarea.form-control {
     resize: none;
 }

@@ -9,9 +9,16 @@
 {% block main-content %}
 <h2>Events</h2>
 {% for event in events %}
-<h3><a href="{% url 'learn:event_read' event.id %}"> {{event.name}} </a></h3>
+<h3><a href="{% url 'learn:event_read' event.id %}"> {{event.name}} </a> </h3>
 <p class="fs-6">{{ event.event_date|date:"d-M-Y" }} {{ event.event_date|time:"h:i A" }}</p>
 <p>{{event.description}}</p>
+{% if event.event_manager%}
+<p>- {{event.event_manager.first_name|title}} {{event.event_manager.last_name|title}}</p>
+{% endif %}
+{% if user.is_authenticated %}
+
+
+{% if user == event.event_manager %}
 <div style="display: flex; justify-content: flex-start; align-items: center">
     <div class="col">
         <a href="{% url 'learn:event_update' event.id %}">
@@ -25,6 +32,8 @@
     </div>
 </div>
 <hr />
+{% endif %}
+{% endif %}
 {% endfor %}
 <!--  -->
 {% endblock main-content %}

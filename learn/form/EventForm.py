@@ -16,12 +16,12 @@ class EventForm(forms.ModelForm):
             "description",
         )
         labels = {
-            "name": "",
+            "name": "Event",
             "event_date": "Date of Event (YYYY-MM-DD)",
             "event_manager": "Manager",
             "venue": "Venue",
             "participants": "Attendees",
-            "description": "",
+            "description": "Description",
         }
 
         widgets = {
@@ -36,6 +36,8 @@ class EventForm(forms.ModelForm):
                     "class": "form-control textarea fw-300 fh-150",
                     "placeholder": "Description",
                     "resize": None,
+                    "cols": 40,
+                    "rows": 50,
                 }
             ),
             "event_date": widgets.DateInput(

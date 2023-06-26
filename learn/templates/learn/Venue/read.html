@@ -8,6 +8,7 @@
 {% endblock stylesheets %}
 <!--  -->
 {% block main-content %}
+{% if user.is_authenticated %}
 <h3>
     <a href="{{venue.website}}"> {{venue.name}} <span class="material-symbols-outlined fs-6">
         open_in_new
@@ -22,6 +23,9 @@
 </p>
 {% if venue.picture %}
 <img src="{{venue.picture.url}}" alt="" style="width: 320px; height: 180px;object-fit: contain;">
+{% endif %}
+{% else %}
+<p>You need to <a href="{% url 'members:login' %}"> Login </a> to Access this page.</p>
 {% endif %}
 <!--  -->
 {% endblock main-content %}

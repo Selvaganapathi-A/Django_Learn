@@ -10,7 +10,7 @@
 {% block main-content %}
 <!--  -->
 <h2>Add Venue</h2>
-<br />
+{% if user.is_authenticated %}
 <br />
 {% if is_submitted %}
 <p>Form Submitted Successfully...</p>
@@ -23,7 +23,9 @@
 </div>
 {% endif %}
 <!--  -->
-{% endblock main-content %}
+{% else %}
+<p>You need to <a href="{% url 'members:login' %}"> Login </a> to Access this page.</p>
+{% endif %} {% endblock main-content %}
 <!--  -->
 {% block footer %}
 <!--  -->

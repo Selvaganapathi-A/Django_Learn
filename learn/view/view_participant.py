@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 
 from learn.model import Participant
 
@@ -16,11 +16,12 @@ def participant_add(inbound_request: HttpRequest) -> HttpResponse:
             template_name="",
             context={
                 "title": "Event Management",
+                "user": inbound_request.user,
             },
         )
     )
 
-@login_required(login_url=reverse_lazy("members:login"))
+
 def participant_list(inbound_request: HttpRequest) -> HttpResponse:
     participants: list[Participant] = list(Participant.objects.all())
     return HttpResponse(
@@ -30,11 +31,12 @@ def participant_list(inbound_request: HttpRequest) -> HttpResponse:
             context={
                 "title": "Event Management",
                 "participants": participants,
+                "user": inbound_request.user,
             },
         )
     )
 
-@login_required(login_url=reverse_lazy("members:login"))
+
 def participant_read(
     inbound_request: HttpRequest, participant_id: UUID
 ) -> HttpResponse:
@@ -50,6 +52,7 @@ def participant_read(
             context={
                 "title": "Event Management",
                 "participant": participant,
+                "user": inbound_request.user,
             },
         )
     )
@@ -64,6 +67,7 @@ def participant_update(
             template_name="",
             context={
                 "title": "Event Management",
+                "user": inbound_request.user,
             },
         )
     )
@@ -78,6 +82,7 @@ def participant_delete(
             template_name="",
             context={
                 "title": "Event Management",
+                "user": inbound_request.user,
             },
         )
     )

@@ -1,14 +1,16 @@
 from uuid import UUID
 
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from learn.form import EventForm
 from learn.model import Event
 
 
+@login_required(login_url=reverse_lazy("members:login"))
 def event_add(inbound_request: HttpRequest) -> HttpResponse:
     if inbound_request.method == "POST":
         form = EventForm(data=inbound_request.POST, files=inbound_request.FILES)
@@ -29,6 +31,7 @@ def event_add(inbound_request: HttpRequest) -> HttpResponse:
             context={
                 "title": "Add Event",
                 "form": EventForm(),
+                "user": inbound_request.user,
             },
         )
     )
@@ -37,7 +40,7 @@ def event_add(inbound_request: HttpRequest) -> HttpResponse:
 def event_list(inbound_request: HttpRequest) -> HttpResponse:
     events: tuple[Event] = tuple(
         Event.objects.all()
-        .select_related("venue")
+        .select_related("venue", "event_manager")
         .order_by(
             "event_date",
             "name",
@@ -50,6 +53,7 @@ def event_list(inbound_request: HttpRequest) -> HttpResponse:
             context={
                 "title": "Events List",
                 "events": events,
+                "user": inbound_request.user,
             },
         )
     )
@@ -63,16 +67,18 @@ def event_read(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
         render(
             request=inbound_request,
             template_name="learn/Event/read.html",
-            context={"title": event.name, "event": event},
+            context={
+                "title": event.name,
+                "event": event,
+                "user": inbound_request.user,
+            },
         )
     )
 
 
 def event_update(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
     event = Event.objects.get(
-        Q(
-            id=event_id,
-        ),
+        id=event_id,
     )
     if inbound_request.method == "POST":
         form = EventForm(
@@ -97,7 +103,9 @@ def event_update(inbound_request: HttpRequest, event_id: UUID) -> HttpResponse:
             template_name="learn/Event/update.html",
             context={
                 "title": "Update Event",
+                "event": event,
                 "form": form,
+                "user": inbound_request.user,
             },
         )
     )

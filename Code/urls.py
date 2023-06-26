@@ -22,6 +22,7 @@ from django.urls import include, path
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("learn.urls", namespace="event_management")),
+    path("vulture/", include("vulture.urls", namespace="vulture")),
     path("members/", include("django.contrib.auth.urls")),
     path("members/", include("members.urls", namespace="members")),
 ]

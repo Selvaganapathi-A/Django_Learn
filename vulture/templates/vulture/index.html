@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vulture</title>
+    </head>
+    <body>
+        <form action="{% url 'vulture:index' %}" method="post" id="choiceForm">
+            {% csrf_token %}
+            <input type="text" name="username" id="username" />
+            <input type="text" name="password" id="password" />
+            <input type="button" value="Submit" id="choiceFormSubmit" />
+            <input type="submit" value="Submitt" id="choiceFormSubmitt" />
+        </form>
+    </body>
+    <script>
+        let form = document.getElementById("choiceForm");
+        let formSubmit = document.getElementById("choiceFormSubmit");
+
+        formSubmit.addEventListener("click", (e) => {
+            let username = document.getElementById("username");
+            let password = document.getElementById("password");
+            let csrftoken = document.querySelector("#choiceForm>input[name='csrfmiddlewaretoken']").value;
+
+            cookie = document.cookie.split("=");
+
+            let response_header = {
+                "X-CSRFToken": cookie[1],
+            };
+
+            let response_body = {
+                username,
+                password
+            };
+
+
+            fetch(form.action !== "" ? form.action : window.location.href, {
+                method: "POST",
+                headers: response_header,
+                body: response_body,
+                data: response_body,
+            })
+                .then(
+                    (response) => {
+                        return response.ok;
+                    },
+                    (err) => {
+                        console.log(err.message);
+                    }
+                )
+                .then((result) => {
+                    console.log(result, "form submitted...");
+                });
+        });
+    </script>
+</html>
+
+<input
+    type="hidden"
+    name="csrfmiddlewaretoken"
+    value="KMUlSoCI9Kk94ArTVkXIYiv4q2p2AMIPgHZKYN0yJZuVgIwmoqj9xZFE2JWSWQc7"
+/>

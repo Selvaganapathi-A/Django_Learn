@@ -9,6 +9,7 @@
 <!--  -->
 {% block main-content %}
 <!--  -->
+{% if user.is_authenticated %}
 <h2>Add event</h2>
 <br />
 <br />
@@ -21,6 +22,9 @@
         <input class="btn btn-primary" type="submit" value="Submit" />
     </form>
 </div>
+{% endif %}
+{% else %}
+<p>You need to <a href="{% url 'members:login' %}"> Login </a> to Access this page.</p>
 {% endif %}
 <!--  -->
 {% endblock main-content %}

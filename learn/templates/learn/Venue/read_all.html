@@ -34,7 +34,8 @@
 {% for venue in venues %}
 <h3><a href="{% url 'learn:venue_read' venue.id %}"> {{venue.name}} </a></h3>
 <p>{{venue.address}}</p>
-
+{% if user.is_authenticated %}
+{% if user.id == venue.owner.id %}
 <div style="display: flex; justify-content: flex-start; align-items: center">
     <div class="col">
         <a href="{% url 'learn:venue_update' venue.id %}">
@@ -47,6 +48,7 @@
         </a>
     </div>
 </div>
+{% endif %} {% endif %}
 <hr />
 {% endfor %}
 
@@ -78,7 +80,11 @@
     <br>
     <br>
 -->
-{% endblock main-content %} {% block footer %}
+{% endblock main-content %}
+<!--  -->
+{% block footer %}
+<!--  -->
+{% if user.is_authenticated %}
 <style>
     .footer-container {
         display: flex;
@@ -100,4 +106,6 @@
         <a href="{% url 'learn:export_venues_pdf' %}">Export Venues as PDF</a>
     </span>
 </div>
+{% endif %}
+<!--  -->
 {% endblock footer %}

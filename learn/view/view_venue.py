@@ -1,9 +1,10 @@
 from uuid import UUID
 
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from learn.form import VenueForm
 from learn.model import Venue
@@ -20,8 +21,9 @@ def venue_add(
             files=inbound_request.FILES,
         )
         if form.is_valid():
-            form.save()
-            print(form.Meta.model.id)
+            venue = form.save(commit=False)
+            venue.owner = inbound_request.user.id #type:ignore
+            venue.save()
             return HttpResponseRedirect(
                 redirect_to=reverse("learn:venue_add") + "?submitted=True",
             )
@@ -40,6 +42,7 @@ def venue_add(
                 "title": "Add Venue",
                 "is_submitted": is_submitted,
                 "form": form,
+                "user": inbound_request.user,
             },
         )
     )
@@ -58,14 +61,15 @@ def venue_list(inbound_request: HttpRequest) -> HttpResponse:
             "name",
             "address",
         ),
-        2,
+        4,
     )
     current_page = inbound_request.GET.get("page")
 
     venues = page.get_page(current_page)
 
-
-    current_page, page_list = pager(venues.number, venues.paginator.num_pages, 5)
+    current_page, page_list = pager(
+        venues.number, venues.paginator.num_pages, 5
+    )
     return HttpResponse(
         render(
             request=inbound_request,
@@ -75,6 +79,7 @@ def venue_list(inbound_request: HttpRequest) -> HttpResponse:
                 "venues": venues,
                 "num_of_pages": page_list,
                 "current_page": current_page,
+                "user": inbound_request.user,
             },
         )
     )
@@ -92,6 +97,7 @@ def venue_read(
             context={
                 "title": "Venue " + venue.name,
                 "venue": venue,
+                "user": inbound_request.user,
             },
         )
     )
@@ -125,6 +131,8 @@ def venue_update(
             context={
                 "title": "Update Venue",
                 "form": form,
+                "venue":venue_instance,
+                "user": inbound_request.user,
             },
         )
     )
